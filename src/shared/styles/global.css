@@ -22,7 +22,7 @@ h3 {
 }
 
 h4 {
-  @apply text-lg sm:text-xl md:text-2xl font-medium leading-normal;
+  @apply text-lg sm:text-xl md:text-2xl leading-normal;
 }
 
 h5 {
@@ -76,12 +76,12 @@ sub {
   @apply bg-primary-500 text-white;
 }
 
-input::placeholder {
-  @apply text-primary-700;
-}
+/* input::placeholder {
+  @apply text-primary-500;
+} */
 
 :focus-visible {
-  @apply outline outline-2 outline-primary-500;
+  @apply  outline outline-2 outline-primary-500;
 }
 
 textarea {
