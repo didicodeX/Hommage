@@ -1,5 +1,3 @@
-import formatTimeAgo from "../../../shared/utils/formatTimeAgo";
-
 import { useDonationModal } from "../store/donation.store";
 
 export default function DonationListDrawer({
@@ -26,7 +24,7 @@ export default function DonationListDrawer({
               <span className="font-medium">${donation.amount.toFixed(2)}</span>
               <span className="text-gray-500">
                 {donation.createdAt
-                  ? formatTimeAgo(new Date(donation.createdAt))
+                  ? new Date(donation.createdAt)
                   : "Il y a quelques instants"}
               </span>
               {donation.message && (
