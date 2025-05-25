@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import Button from "../../../shared/components/Button";
-import useCreateDonation from "../hooks/useDonations";
+import useDonation from "../hooks/useDonations";
 
 export default function DonationForm() {
   const {
@@ -9,7 +9,7 @@ export default function DonationForm() {
     formState: { errors },
   } = useForm();
 
-  const { createDonation } = useCreateDonation();
+  const { createDonation } = useDonation();
 
   const onSubmit = (data) => {
     console.log(data);

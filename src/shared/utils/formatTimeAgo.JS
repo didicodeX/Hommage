@@ -1,5 +1,9 @@
-export default function formatTimeAgo(dateString) {
-  const diff = Date.now() - new Date(dateString).getTime();
-  const hours = Math.floor(diff / 1000 / 60 / 60);
-  return `il y a ${hours}h`;
-}
+import { formatDistanceToNow } from "date-fns";
+import { fr } from "date-fns/locale";
+
+export default function formatTimeAgo (date) {
+  return formatDistanceToNow(new Date(date), {
+    addSuffix: true,
+    locale: fr,
+  });
+};

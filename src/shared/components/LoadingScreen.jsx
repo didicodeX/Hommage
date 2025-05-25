@@ -1,4 +1,4 @@
-import { Spinner } from "phosphor-react";
+import { Spinner } from "@phosphor-icons/react";
 
 export default function LoadingScreen() {
   return (

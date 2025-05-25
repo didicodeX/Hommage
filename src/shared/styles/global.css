@@ -67,7 +67,9 @@ sub {
 .padd-y {
   @apply py-4 sm:py-6 md:py-8 lg:py-10 xl:py-12;
 }
-
+.mar-t {
+  @apply mt-4 sm:mt-6 md:mt-8 lg:mt-10 xl:mt-12 2xl:mt-24;
+}
 .section {
   @apply p-6 border-b border-b-primary-200;
 }

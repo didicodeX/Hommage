@@ -1,8 +1,9 @@
-// src/features/donations/hooks/useCreateDonation.js
-import { useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import * as API from "../api/donation.api";
+import formatTimeAgo from "../../../shared/utils/formatTimeAgo";
 
-export default function useCreateDonation() {
+export default function useDonation() {
+  // ✅ Mutation : créer un don
   const createDonationMutation = useMutation({
     mutationFn: API.createDonation,
     onSuccess: (res) => {
@@ -18,9 +19,68 @@ export default function useCreateDonation() {
     },
   });
 
+  // ✅ Query : stats des dons
+  const statsQuery = useQuery({
+    queryKey: ["donation-stats"],
+    queryFn: async () => {
+      const { data } = await API.fetchDonationStats();
+      return {
+        totalAmount: data.totalAmount,
+        goalAmount: data.goalAmount,
+        totalCount: data.totalCount,
+        progress: Math.round((data.totalAmount / data.goalAmount) * 100),
+      };
+    },
+  });
+
+  // ✅ Query : derniers donateurs
+  const donorsQuery = useQuery({
+    queryKey: ["recent-donors"],
+    queryFn: async () => {
+      const { data } = await API.fetchRecentDonors();
+      return data.map((donor) => ({
+        _id: donor._id,
+        firstName: donor.firstName,
+        amount: donor.amount,
+        timeAgo: formatTimeAgo(donor.createdAt),
+        message: donor.message || "", // Assurez-vous que le message est toujours une chaîne
+      }));
+    },
+  });
+
+  // ✅ Query : tous les dons
+  const donationsQuery = useQuery({
+    queryKey: ["all-donations"],
+    queryFn: async () => {
+      const { data } = await API.fetchAllDonations();
+      return data.map((donation) => ({
+        _id: donation._id,
+        firstName: donation.firstName,
+        amount: donation.amount,
+        message: donation.message,
+        timeAgo: formatTimeAgo(donation.createdAt),
+      }));
+    },
+  });
+
   return {
+    // 👉 Création
     createDonation: createDonationMutation.mutate,
     isLoadingCreateDonation: createDonationMutation.isLoading,
-    error: createDonationMutation.error,
+    errorCreateDonation: createDonationMutation.error,
+
+    // 👉 Stats
+    donationStats: statsQuery.data,
+    isLoadingDonationStats: statsQuery.isLoading,
+    errorDonationStats: statsQuery.error,
+
+    // 👉 Donateurs
+    recentDonors: donorsQuery.data,
+    isLoadingRecentDonors: donorsQuery.isLoading,
+    errorRecentDonors: donorsQuery.error,
+
+    // 👉 Tous les dons
+    donations: donationsQuery.data,
+    isLoadingDonations: donationsQuery.isLoading,
   };
 }
