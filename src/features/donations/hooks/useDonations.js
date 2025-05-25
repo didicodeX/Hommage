@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import * as API from "../api/donation.api";
-import formatTimeAgo from "../../../shared/utils/formatTimeAgo";
+import formatTime from "../../../shared/utils/formatTime.js";
 
 export default function useDonation() {
   // ✅ Mutation : créer un don
@@ -42,7 +42,7 @@ export default function useDonation() {
         _id: donor._id,
         firstName: donor.firstName,
         amount: donor.amount,
-        timeAgo: formatTimeAgo(donor.createdAt),
+        timeAgo: formatTime(donor.createdAt),
         message: donor.message || "", // Assurez-vous que le message est toujours une chaîne
       }));
     },
@@ -58,7 +58,7 @@ export default function useDonation() {
         firstName: donation.firstName,
         amount: donation.amount,
         message: donation.message,
-        timeAgo: formatTimeAgo(donation.createdAt),
+        timeAgo: formatTime(donation.createdAt),
       }));
     },
   });
