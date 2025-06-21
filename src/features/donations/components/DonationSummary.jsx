@@ -43,8 +43,8 @@ export default function DonationSummary() {
           variant="outline"
           onClick={() => {
             const shareData = {
-              title: "Hommage à Papa Tano",
-              text: "Contribuez à l’hommage en mémoire de Papa Tano",
+              title: "Hommage à Papa Jean",
+              text: "Contribuez à l'hommage en mémoire de Papa Jean",
               url: window.location.href,
             };
 
