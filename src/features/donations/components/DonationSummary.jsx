@@ -1,9 +1,9 @@
-import Button from "../../../shared/components/Button";
-import DonationListModale from "./DonationListModale";
-import { useDonationModal } from "../store/donation.store";
-import useDonation from "../hooks/useDonations";
-import Donor from "./Donor";
 import toast from "react-hot-toast";
+import Button from "../../../shared/components/Button";
+import useDonation from "../hooks/useDonations";
+import { useDonationModal } from "../store/donation.store";
+import DonationListModale from "./DonationListModale";
+import Donor from "./Donor";
 
 export default function DonationSummary() {
   const open = useDonationModal((state) => state.open);
@@ -43,8 +43,8 @@ export default function DonationSummary() {
           variant="outline"
           onClick={() => {
             const shareData = {
-              title: "Hommage à Papa Tano",
-              text: "Contribuez à l’hommage en mémoire de Papa Tano",
+              title: "Hommage à Papa Jean",
+              text: "Contribuez à l’hommage en mémoire de Papa Jean",
               url: window.location.href,
             };
 
