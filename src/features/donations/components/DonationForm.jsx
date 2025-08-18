@@ -1,3 +1,4 @@
+import React from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../../shared/components/Button";
 import useDonation from "../hooks/useDonations";
@@ -33,7 +34,9 @@ export default function DonationForm() {
           }`}
         />
         {errors.firstName && (
-          <p className="text-error-500 text-sm mt-1">{errors.firstName.message}</p>
+          <p className="text-error-500 text-sm mt-1">
+            {errors.firstName.message}
+          </p>
         )}
       </div>
 
