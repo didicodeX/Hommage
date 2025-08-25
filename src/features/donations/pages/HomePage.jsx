@@ -16,7 +16,11 @@ export default function HomePage() {
         <h4>Younde, Cameroun . Avril 17 1943 - Octobre 20 2025</h4>
       </div>
       <div className="flex flex-col gap-4 lg:flex-row">
-        <img src="/images/papa.png" alt="" className="rounded-md" />
+        <img
+          src="/images/papa.jpg"
+          alt=""
+          className="rounded-md w-full lg:w-1/2 lg:max-w-md object-cover"
+        />
         <DonationSummary />
       </div>
       <div>
